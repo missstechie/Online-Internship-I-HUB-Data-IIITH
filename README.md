@@ -5,7 +5,8 @@ Tasks performed during the internship using AIML skills
 
 👨‍💻 Overview
 
-This repository documents my progress and submissions for the internship tasks assigned. The tasks focus on video processing using FFmpeg, basic multimedia manipulation, and introduction to object detection using YOLO.
+This repository documents my progress and submissions for the internship tasks assigned.
+The tasks focus on video processing using FFmpeg, basic multimedia manipulation, and introduction to object detection using YOLO.
 
 📅 Week 1 Tasks
 
@@ -33,6 +34,7 @@ Extracted images are stored in /task1_frames/
 Sample images will be uploaded separately
 
 🔗 Video Link
+
  https://www.youtube.com/watch?v=STzJdvt_8X0&list=PPSV
 
 
@@ -76,7 +78,9 @@ FFmpeg for merging
 Trim audio to 1 minute (using Audacity)
 
 Video -  https://www.youtube.com/watch?v=mbqCXpmo15A&t=1s
+
 Audio - https://cdn.pixabay.com/download/audio/2025/02/06/audio_9939140ee3.mp3?filename=rolzim-peacable-milieu-297513.mp3
+
 Merge audio with video:
 
 ffmpeg -i output.mp4 -i audio.mp3 -c:v copy -c:a aac final_output.mp4
