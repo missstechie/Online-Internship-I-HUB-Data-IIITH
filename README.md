@@ -8,7 +8,9 @@ Tasks performed during the internship using AIML skills
 This repository documents my progress and submissions for the internship tasks assigned. The tasks focus on video processing using FFmpeg, basic multimedia manipulation, and introduction to object detection using YOLO.
 
 📅 Week 1 Tasks
+
 🔹 Task 1: Extract Images from Video using FFmpeg
+
 🎯 Objective
 Download a short YouTube video
 Extract multiple frames (images) using FFmpeg
@@ -29,12 +31,14 @@ ffmpeg -i input.mp4 -vf fps=1 output_%04d.png
 📷 Output
 Extracted images are stored in /task1_frames/
 Sample images will be uploaded separately
+
 🔗 Video Link
  https://www.youtube.com/watch?v=STzJdvt_8X0&list=PPSV
 
 
 
 🔹 Task 2: Generate Video from Frames
+
 🎯 Objective
 Extract 30 FPS frames from a 1-minute video (~1800 images)
 Reconstruct video using extracted frames
@@ -51,12 +55,14 @@ ffmpeg -i input.mp4 -vf fps=30 frames/frame_%04d.png
 Recreate video:
 
 ffmpeg -framerate 30 -i frames/frame_%04d.png -c:v libx264 -pix_fmt yuv420p output.mp4
+
 📊 Output
 ~1800 frames generated
 Reconstructed 1-minute video
 
 
 🔹 Task 3: Add Audio to Video
+
 🎯 Objective
 Select a 1-minute audio track
 Merge audio with generated video
@@ -81,6 +87,7 @@ Final video with audio track
 📅 Week 2 Tasks
 
 🔹 Task 1: Create Python Virtual Environment
+
 🎯 Objective
 
 Set up isolated Python environment for project work
@@ -90,6 +97,7 @@ python3 -m venv myenv
 source myenv/bin/activate
 
 🔹 Task 2: Install Ultralytics
+
 🎯 Objective
 
 Install YOLO package for object detection
@@ -98,6 +106,7 @@ Install YOLO package for object detection
 pip install -U ultralytics
 
 🔹 Task 3: Run YOLO Object Detection
+
 🎯 Objective
 
 Perform object detection using pretrained YOLO model
