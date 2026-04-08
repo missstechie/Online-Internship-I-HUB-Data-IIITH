@@ -143,21 +143,33 @@ Detected objects with bounding boxes
 Output images/videos stored in /runs/detect/
 
 
-## **Task 4: Advanced Video Annotation with YOLOv8 and Audio Integration**
+Here’s a simplified, clean, and human-friendly version of **Task 4** in the same style as your earlier tasks:
 
-This task demonstrates an end-to-end pipeline where raw frames from a video are processed using **YOLOv8** for object detection, then combined back into a video with an optional audio track.
+---
 
+🔹 **Task 4: Advanced Video Annotation with YOLOv8 and Audio Integration**
 
-### **Step 1: Set up Virtual Environment**
+🎯 **Objective**
+Process video frames using YOLOv8 for object detection, then reconstruct the video with optional background audio.
 
-Create a fresh virtual environment and activate it:
+🛠️ **Tools Used**
+
+* Python & Virtual Environment
+* Ultralytics YOLOv8
+* OpenCV, FFmpeg, Matplotlib
+* Audio (optional)
+
+📌 **Steps Performed**
+
+**Step 1: Set up Virtual Environment**
+Create and activate isolated environment:
 
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-Install all required packages:
+Install required packages:
 
 ```bash
 pip install ultralytics torch torchvision opencv-python matplotlib ffmpeg-python
@@ -169,11 +181,8 @@ Verify installation:
 pip list | grep -E "ultralytics|torch|opencv-python|matplotlib|ffmpeg-python"
 ```
 
----
-
-### **Step 2: Run YOLOv8 Detection on Frames**
-
-Create a `detect.py` script:
+**Step 2: Run YOLOv8 Detection on Frames**
+Create a Python script `detect.py` to detect objects in all frames:
 
 ```python
 from ultralytics import YOLO
@@ -191,75 +200,57 @@ for img_name in images:
     model.predict(source=img_path, save=True, save_dir=output_folder)
 ```
 
-Run detection:
+Run the script:
 
 ```bash
 python detect.py
 ```
 
-✅ Annotated images will appear in the `annotated/` folder.
+✅ Annotated images will be saved in the `annotated/` folder.
 
----
-
-### **Step 3: Create Video from Annotated Frames**
-
-Use `FFmpeg` to combine frames into a video at 30 FPS:
+**Step 3: Create Video from Annotated Frames**
+Combine the annotated frames into a video at 30 FPS:
 
 ```bash
 ffmpeg -framerate 30 -i annotated/frame_%04d.jpg -c:v libx264 -pix_fmt yuv420p output_video_no_audio.mp4
 ```
 
-> Note: `%04d` assumes filenames like `frame_0001.jpg`. Adjust if your numbering differs.
-
----
-
-### **Step 4: Add Audio to Video**
-
-If you have background audio (`music_1min.mp3`), merge it with the video:
+**Step 4: Add Audio to Video (Optional)**
+If you have a background audio file (e.g., `music_1min.mp3`), merge it with the video:
 
 ```bash
 ffmpeg -i output_video_no_audio.mp4 -i music_1min.mp3 -c:v copy -c:a aac -shortest output_video.mp4
 ```
 
-✅ The final video `output_video.mp4` will have both annotated frames and audio.
+✅ Final video will have annotated frames and audio.
 
----
-
-### **Step 5: Key Notes**
-
-* Make sure the **frames folder** contains all images in sequential order.
-* YOLOv8 must be properly installed and the model file `yolov8n.pt` present in the working folder.
-* Using `venv` keeps dependencies isolated and avoids conflicts with other projects.
-* All paths are **WSL and Windows compatible** (e.g., `/mnt/c/...`).
-
----
-
-### **Outcome**
+📊 **Output**
 
 * Annotated frames with detected objects.
-* Video compilation with optional background music.
+* Reconstructed video with optional audio.
 * Ready-to-use workflow for video analysis using YOLOv8.
 
-Video -  https://www.youtube.com/watch?v=mbqCXpmo15A&t=1s
+🔗 **References**
 
-Audio - https://cdn.pixabay.com/download/audio/2026/03/31/audio_4c1ff76e9f.mp3?filename=kaazoom-thoughtful-1-minute-edit-relaxing-guitar-music-511743.mp3
+Video used: https://www.youtube.com/watch?v=mbqCXpmo15A&t=1s
+
+Audio used: https://cdn.pixabay.com/download/audio/2026/03/31/audio_4c1ff76e9f.mp3?filename=kaazoom-thoughtful-1-minute-edit-relaxing-guitar-music-511743.mp3
 
 
-🚀 Key Learnings
+🚀 **Key Learnings**
 
-Learned video processing using FFmpeg
-Understood frame extraction and reconstruction
-Worked with audio-video merging
-Set up Python virtual environments
-Gained hands-on experience with YOLO object detection
+* Learned end-to-end video processing with frame annotation.
+* Practiced combining YOLO detection with video reconstruction.
+* Gained experience merging audio with video.
+* Strengthened Python and FFmpeg workflow skills.
 
-📌 Notes
+📌 **Notes**
 
-All outputs (images, videos) are uploaded separately
-Commands tested in Linux environment
-GitHub commits reflect progress timeline
+* Keep frames in sequential order for smooth video.
+* Ensure `yolov8n.pt` is present in the working folder.
+* Using virtual environment avoids package conflicts.
 
-🙌 Acknowledgment
-
+---
+Acknowledgement
 
 Thanks to the internship mentors for structured tasks and continuous guidance.
