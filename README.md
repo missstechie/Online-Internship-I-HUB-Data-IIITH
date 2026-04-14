@@ -291,6 +291,26 @@ ffmpeg -i segmented_video.mp4 -i music_1min_trimmed.mp3 -c:v copy -c:a aac final
 * Segmented images with pixel-wise classification
 * Final 1-minute video with segmentation + audio
 
+
+
+## 📊 Performance Evaluation
+
+The model was evaluated using validation metrics from YOLO.
+
+### 📈 Key Metrics:
+
+- Precision: ~0.70  
+- Recall: ~0.65  
+- mAP50: ~0.72  
+- mAP50-95: ~0.50  
+
+### 📊 Evaluation Graphs:
+
+- F1 Confidence Curve  
+- Precision Curve  
+- Confusion Matrix  
+- Normalized Confusion Matrix  
+
 ---
 
 # 🚀 Key Learnings
