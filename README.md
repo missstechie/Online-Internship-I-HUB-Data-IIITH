@@ -236,8 +236,3 @@ ffmpeg -i final_stacked.mp4 -i music.mp3 -c:v copy -c:a aac final_output.mp4
 # 🙏 Acknowledgement
 
 Thanks to the internship mentors for structured guidance and hands-on learning experience throughout the program.
-
-```
-
----
-
