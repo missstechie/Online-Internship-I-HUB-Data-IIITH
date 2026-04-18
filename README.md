@@ -1,83 +1,62 @@
-# Tasks Performed During the Internship using AIML Skills
+
+# 📹 Video Processing & AI-Based Object Detection Internship  
+## (Weeks 1, 2 & 3 – AIML Internship Project)
 
 ---
 
-# 📹 Video Processing & Object Detection Internship (Week 1, 2 & 3)
+# 👨‍💻 Overview
+This repository contains all tasks completed during the internship focused on:
 
-## 👨‍💻 Overview
-
-This repository documents my progress and submissions for the internship tasks assigned. The tasks focus on **video processing using FFmpeg**, multimedia manipulation, and **AI-based computer vision techniques** such as object detection and semantic segmentation using **Ultralytics YOLO**.
+- Video processing using FFmpeg  
+- Frame extraction and reconstruction  
+- Object detection using YOLOv8  
+- Semantic segmentation using YOLOv8-seg  
+- Performance evaluation of models  
+- Audio-video merging and final multimedia generation  
 
 ---
 
 # 📅 Week 1 Tasks
 
-## 🔹 Task 1: Extract Images from Video using FFmpeg
+---
+
+## 🔹 Task 1: Extract Frames from Video
 
 ### 🎯 Objective
+Extract images from a YouTube video using FFmpeg.
 
-* Download a short YouTube video
-* Extract multiple frames (images) using FFmpeg
+### 🛠 Tools Used
+- yt-dlp  
+- ffmpeg  
 
-### 🛠️ Tools Used
+### 📌 Commands
+```bash
+yt-dlp -f mp4 -o input.mp4 "<youtube_url>"
 
-* yt-dlp – for downloading YouTube videos
-* ffmpeg – for frame extraction
+ffmpeg -i input.mp4 -vf fps=1 frame_%04d.png
+````
 
-### 📌 Steps Performed
+### 📊 Output
 
-Downloaded video:
-
-```
-yt-dlp <youtube_video_url>
-```
-
-Extracted frames:
-
-```
-ffmpeg -i input.mp4 -vf fps=1 output_%04d.png
-```
-
-### 📷 Output
-
-* Extracted images stored in `/task1_frames/`
-* Sample images uploaded
-
-### 🔗 Video Link
-
-https://www.youtube.com/watch?v=STzJdvt_8X0&list=PPSV
+* Extracted image frames stored in `/task1_frames/`
 
 ---
 
-## 🔹 Task 2: Generate Video from Frames
+## 🔹 Task 2: Reconstruct Video from Frames
 
 ### 🎯 Objective
 
-* Extract 30 FPS frames from a 1-minute video (~1800 images)
-* Reconstruct video using extracted frames
+Convert extracted frames back into a video.
 
-### 📌 Steps Performed
+### 📌 Command
 
-Extract frames at 30 FPS:
-
-```
-ffmpeg -i input.mp4 -vf fps=30 frames/frame_%04d.png
-```
-
-Recreate video:
-
-```
-ffmpeg -framerate 30 -i frames/frame_%04d.png -c:v libx264 -pix_fmt yuv420p output.mp4
+```bash
+ffmpeg -framerate 30 -i frame_%04d.png -c:v libx264 output.mp4
 ```
 
 ### 📊 Output
 
-* ~1800 frames generated
-* Reconstructed 1-minute video
-
-### 🔗 Video Link
-
-https://www.youtube.com/watch?v=mbqCXpmo15A&t=1s
+* Reconstructed 1-minute video from frames
 
 ---
 
@@ -85,78 +64,46 @@ https://www.youtube.com/watch?v=mbqCXpmo15A&t=1s
 
 ### 🎯 Objective
 
-* Select a 1-minute audio track
-* Merge audio with generated video
+Merge audio with generated video.
 
-### 🛠️ Tools Used
+### 📌 Command
 
-* Audio source: Pixabay
-* Audio editing: Audacity
-* FFmpeg for merging
-
-### 📌 Steps Performed
-
-Trim audio to 1 minute using Audacity
-
-Merge audio with video:
-
-```
-ffmpeg -i output.mp4 -i audio.mp3 -c:v copy -c:a aac final_output.mp4
+```bash
+ffmpeg -i output.mp4 -i audio.mp3 -c:v copy -c:a aac final_video.mp4
 ```
 
-### 🎧 Output
+### 📊 Output
 
 * Final video with audio track
-
-### 🔗 Resources
-
-Video: https://www.youtube.com/watch?v=mbqCXpmo15A&t=1s
-
-
-Audio: https://cdn.pixabay.com/download/audio/2025/02/06/audio_9939140ee3.mp3
 
 ---
 
 # 📅 Week 2 Tasks
 
+---
+
 ## 🔹 Task 1: Create Python Virtual Environment
 
-### 🎯 Objective
-
-Set up isolated Python environment for project work
-
-### 📌 Steps
-
-```
+```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
 ---
 
-## 🔹 Task 2: Install Ultralytics
+## 🔹 Task 2: Install Ultralytics (YOLO)
 
-### 🎯 Objective
-
-Install YOLO package for object detection
-
-### 📌 Command
-
-```
+```bash
 pip install -U ultralytics
 ```
 
 ---
 
-## 🔹 Task 3: Run YOLO Object Detection
+## 🔹 Task 3: YOLO Object Detection
 
-### 🎯 Objective
+### 📌 Python Code
 
-Perform object detection using pretrained YOLO model
-
-### 📌 Sample Code
-
-```
+```python
 from ultralytics import YOLO
 
 model = YOLO("yolov8n.pt")
@@ -165,175 +112,132 @@ results = model("image.jpg", show=True)
 
 ### 📊 Output
 
-* Detected objects with bounding boxes
-* Outputs stored in `/runs/detect/`
+* Bounding boxes around detected objects
+* Results stored in `/runs/detect/`
 
 ---
 
-## 🔹 Task 4: Advanced Video Annotation with YOLOv8 and Audio Integration
+## 🔹 Task 4: Video Annotation + Audio Integration
 
-### 🎯 Objective
+### 📌 Convert frames to video
 
-Process video frames using YOLOv8 and reconstruct annotated video
-
-### 🛠️ Tools Used
-
-* Python & Virtual Environment
-* Ultralytics YOLOv8
-* OpenCV, FFmpeg, Matplotlib
-
-### 📌 Steps Performed
-
-Run detection on frames using custom script
-
-Create video from annotated frames:
-
-```
-ffmpeg -framerate 30 -i annotated/frame_%04d.jpg -c:v libx264 -pix_fmt yuv420p output_video_no_audio.mp4
+```bash
+ffmpeg -framerate 30 -i annotated/frame_%04d.jpg output.mp4
 ```
 
-Add audio:
+### 📌 Add audio
 
+```bash
+ffmpeg -i output.mp4 -i music.mp3 -c:v copy -c:a aac final_output.mp4
 ```
-ffmpeg -i output_video_no_audio.mp4 -i music_1min.mp3 -c:v copy -c:a aac -shortest output_video.mp4
-```
-
-### 📊 Output
-
-* Annotated frames
-* Video with detected objects and audio
 
 ---
 
 # 📅 Week 3 Tasks
 
-## 🔹 Task 1: Performance Metrics & Semantic Segmentation
-
-### 🎯 Objective
-
-* Analyze detection performance metrics
-* Apply semantic segmentation on images
-* Convert segmented images into video with audio
-
 ---
 
-## 🧠 Part A: Performance Metrics
+## 🔹 Task 1: Performance Metrics & Semantic Segmentation
 
-### 📌 Description
-
-Metrics were obtained from YOLO validation results stored in:
-
-```
-runs/detect/val/
-```
-
-### 📊 Metrics Observed
+### 📊 Metrics Used
 
 * Precision
 * Recall
 * mAP50
 * mAP50-95
 
-### 📷 Files Generated
-
-* `results.png`
-* `confusion_matrix.png`
-* `results.csv`
-
----
-
-## 🧠 Part B: Semantic Segmentation
-
-### 🎯 Objective
-
-Perform pixel-level classification of objects
-
-### 📌 Command Used
+### 📁 Metrics Location
 
 ```
+runs/detect/val/
+```
+
+### 📌 Semantic Segmentation Command
+
+```bash
 yolo segment predict model=yolov8n-seg.pt source=frames/
 ```
 
 ### 📊 Output
 
-* Segmented images stored in:
-
 ```
 runs/segment/predict/
 ```
 
-* Objects highlighted with colored masks
-
 ---
 
-## 🧠 Part C: Convert Segmented Images to Video
+## 🔹 Convert Segmented Images to Video
 
-### 📌 Command
-
-```
-ffmpeg -framerate 30 -pattern_type glob -i "*.jpg" -c:v libx264 -pix_fmt yuv420p segmented_video.mp4
+```bash
+ffmpeg -framerate 30 -i segmented/frame_%04d.jpg segmented_video.mp4
 ```
 
 ---
 
-## 🧠 Part D: Add Audio
+## 🔹 Add Audio
 
-### 📌 Command
-
-```
-ffmpeg -i segmented_video.mp4 -i music_1min_trimmed.mp3 -c:v copy -c:a aac final_segmented_video.mp4
+```bash
+ffmpeg -i segmented_video.mp4 -i music.mp3 -c:v copy -c:a aac final_segmented_video.mp4
 ```
 
 ---
 
-## 📊 Final Output
+# 📅 Week 3 Task 2 (Final Pipeline)
 
-* Segmented images with pixel-wise classification
-* Final 1-minute video with segmentation + audio
+---
 
+## 🔹 Steps Performed
 
+* Trimmed video (13s → 60s)
+* Object detection using YOLOv8
+* Semantic segmentation using YOLOv8-seg
+* Stacked videos vertically
+* Added background music
 
-## 📊 Performance Evaluation
+---
 
-The model was evaluated using validation metrics from YOLO.
+## 📌 Final Command (Video Stacking)
 
-### 📈 Key Metrics:
+```bash
+ffmpeg -i raw.mp4 -i detect.mp4 -i segment.mp4 \
+-filter_complex "vstack=inputs=3" final_stacked.mp4
+```
 
-- Precision: ~0.70  
-- Recall: ~0.65  
-- mAP50: ~0.72  
-- mAP50-95: ~0.50  
+---
 
-### 📊 Evaluation Graphs:
+## 📌 Add Audio to Final Video
 
-- F1 Confidence Curve  
-- Precision Curve  
-- Confusion Matrix  
-- Normalized Confusion Matrix  
+```bash
+ffmpeg -i final_stacked.mp4 -i music.mp3 -c:v copy -c:a aac final_output.mp4
+```
+
+---
+
+# 📊 Final Output
+
+* Raw video
+* Object detection video
+* Semantic segmentation video
+* Final merged video with audio
 
 ---
 
 # 🚀 Key Learnings
 
-* Learned video processing using FFmpeg
-* Understood frame extraction and reconstruction
-* Gained hands-on experience with object detection using YOLO
-* Explored semantic segmentation for precise object boundaries
-* Learned performance evaluation using precision, recall, and mAP
-* Developed end-to-end AI video processing pipeline
-
----
-
-# 📌 Notes
-
-* Maintain sequential frame naming for video creation
-* Always activate virtual environment before running code
-* Ensure model files (`yolov8n.pt`, `yolov8n-seg.pt`) are present
-* Segmentation provides more precise results than detection
+* FFmpeg video processing
+* Frame extraction and reconstruction
+* YOLO object detection
+* Semantic segmentation
+* AI-based video pipeline development
+* Performance evaluation metrics
 
 ---
 
 # 🙏 Acknowledgement
 
-Thanks to the internship mentors for structured tasks and continuous guidance throughout the program.
+Thanks to the internship mentors for structured guidance and hands-on learning experience throughout the program.
+
+```
+
+---
 
