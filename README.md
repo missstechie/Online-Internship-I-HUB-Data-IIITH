@@ -1,238 +1,199 @@
+🚀 Video Processing & AI-Based Object Detection Internship
 
-# 📹 Video Processing & AI-Based Object Detection Internship  
-## (Weeks 1, 2 & 3 – AIML Internship Project)
+(AIML Internship Project – Weeks 1 to 4)
 
----
+👨‍💻 Overview
 
-# 👨‍💻 Overview
-This repository contains all tasks completed during the internship focused on:
+This repository documents a complete internship project focused on:
 
-- Video processing using FFmpeg  
-- Frame extraction and reconstruction  
-- Object detection using YOLOv8  
-- Semantic segmentation using YOLOv8-seg  
-- Performance evaluation of models  
-- Audio-video merging and final multimedia generation  
+🎥 Video processing using FFmpeg
+🧩 Frame extraction and reconstruction
+🤖 Object detection using YOLOv8
+🧠 Semantic segmentation using YOLOv8-seg
+📊 Model evaluation and performance metrics
+🎵 Audio-video merging and multimedia generation
+📁 Dataset structure analysis (YOLO COCO format)
 
----
+The project demonstrates an end-to-end AI video pipeline from raw video input to structured AI-processed outputs.
 
-# 📅 Week 1 Tasks
+🛠️ Tech Stack
 
----
+FFmpeg
+Python 3.x
+Ultralytics YOLOv8
+OpenCV
+yt-dlp
+Linux / WSL environment
 
-## 🔹 Task 1: Extract Frames from Video
 
-### 🎯 Objective
-Extract images from a YouTube video using FFmpeg.
+📅 Week 1 – Video Processing Pipeline
 
-### 🛠 Tools Used
-- yt-dlp  
-- ffmpeg  
+🔹 Task 1: Extract Frames from Video
 
-### 📌 Commands
-```bash
+🎯 Objective
+
+Extract frames from a YouTube video using FFmpeg.
+
+📌 Tools
+
+yt-dlp
+ffmpeg
+📌 Commands
+
 yt-dlp -f mp4 -o input.mp4 "<youtube_url>"
 
 ffmpeg -i input.mp4 -vf fps=1 frame_%04d.png
-````
 
-### 📊 Output
 
-* Extracted image frames stored in `/task1_frames/`
+🔹 Task 2: Reconstruct Video
 
----
-
-## 🔹 Task 2: Reconstruct Video from Frames
-
-### 🎯 Objective
-
-Convert extracted frames back into a video.
-
-### 📌 Command
-
-```bash
 ffmpeg -framerate 30 -i frame_%04d.png -c:v libx264 output.mp4
-```
 
-### 📊 Output
+🔹 Task 3: Add Audio
 
-* Reconstructed 1-minute video from frames
-
----
-
-## 🔹 Task 3: Add Audio to Video
-
-### 🎯 Objective
-
-Merge audio with generated video.
-
-### 📌 Command
-
-```bash
 ffmpeg -i output.mp4 -i audio.mp3 -c:v copy -c:a aac final_video.mp4
-```
 
-### 📊 Output
 
-* Final video with audio track
+📅 Week 2 – YOLO Object Detection Setup
 
----
+🔹 Virtual Environment Setup
 
-# 📅 Week 2 Tasks
-
----
-
-## 🔹 Task 1: Create Python Virtual Environment
-
-```bash
 python3 -m venv venv
 source venv/bin/activate
-```
 
----
+🔹 Install Ultralytics
 
-## 🔹 Task 2: Install Ultralytics (YOLO)
-
-```bash
 pip install -U ultralytics
-```
 
----
+🔹 Object Detection (YOLOv8)
 
-## 🔹 Task 3: YOLO Object Detection
-
-### 📌 Python Code
-
-```python
 from ultralytics import YOLO
-
 model = YOLO("yolov8n.pt")
 results = model("image.jpg", show=True)
-```
 
-### 📊 Output
+🔹 Output
 
-* Bounding boxes around detected objects
-* Results stored in `/runs/detect/`
+Detected objects with bounding boxes
+Results saved in runs/detect/
 
----
+📅 Week 3 – Segmentation & Advanced Video Pipeline
 
-## 🔹 Task 4: Video Annotation + Audio Integration
+🔹 Semantic Segmentation
 
-### 📌 Convert frames to video
-
-```bash
-ffmpeg -framerate 30 -i annotated/frame_%04d.jpg output.mp4
-```
-
-### 📌 Add audio
-
-```bash
-ffmpeg -i output.mp4 -i music.mp3 -c:v copy -c:a aac final_output.mp4
-```
-
----
-
-# 📅 Week 3 Tasks
-
----
-
-## 🔹 Task 1: Performance Metrics & Semantic Segmentation
-
-### 📊 Metrics Used
-
-* Precision
-* Recall
-* mAP50
-* mAP50-95
-
-### 📁 Metrics Location
-
-```
-runs/detect/val/
-```
-
-### 📌 Semantic Segmentation Command
-
-```bash
 yolo segment predict model=yolov8n-seg.pt source=frames/
-```
 
-### 📊 Output
+🔹 Performance Metrics
 
-```
-runs/segment/predict/
-```
+Located in:
 
----
+runs/detect/val/
 
-## 🔹 Convert Segmented Images to Video
+Metrics:
 
-```bash
-ffmpeg -framerate 30 -i segmented/frame_%04d.jpg segmented_video.mp4
-```
+Precision
+Recall
+mAP50
+mAP50-95
 
----
+🔹 Video Reconstruction
 
-## 🔹 Add Audio
+ffmpeg -framerate 30 -i annotated/frame_%04d.jpg output.mp4
 
-```bash
-ffmpeg -i segmented_video.mp4 -i music.mp3 -c:v copy -c:a aac final_segmented_video.mp4
-```
+🔹 Add Audio
 
----
+ffmpeg -i output.mp4 -i music.mp3 -c:v copy -c:a aac final_output.mp4
 
-# 📅 Week 3 Task 2 (Final Pipeline)
+🔹 Final Pipeline (Stacked Output)
 
----
-
-## 🔹 Steps Performed
-
-* Trimmed video (13s → 60s)
-* Object detection using YOLOv8
-* Semantic segmentation using YOLOv8-seg
-* Stacked videos vertically
-* Added background music
-
----
-
-## 📌 Final Command (Video Stacking)
-
-```bash
 ffmpeg -i raw.mp4 -i detect.mp4 -i segment.mp4 \
 -filter_complex "vstack=inputs=3" final_stacked.mp4
-```
 
----
 
-## 📌 Add Audio to Final Video
+📅 Week 4 – Dataset Understanding (YOLO COCO8 Analysis)
 
-```bash
-ffmpeg -i final_stacked.mp4 -i music.mp3 -c:v copy -c:a aac final_output.mp4
-```
+🔹 Task 1: Dataset Structure Analysis
 
----
+🎯 Objective
 
-# 📊 Final Output
+Understand YOLO dataset configuration using COCO8 dataset.
 
-* Raw video
-* Object detection video
-* Semantic segmentation video
-* Final merged video with audio
+📁 Dataset Structure
+coco8/
+ ├── images/
+ │    ├── train/
+ │    └── val/
+ ├── labels/
+ │    ├── train/
+ │    └── val/
+ 
+⚙️ YAML Configuration File
 
----
+Example (coco8.yaml):
 
-# 🚀 Key Learnings
+path: coco8
+train: images/train
+val: images/val
 
-* FFmpeg video processing
-* Frame extraction and reconstruction
-* YOLO object detection
-* Semantic segmentation
-* AI-based video pipeline development
-* Performance evaluation metrics
+names:
+  0: person
+  1: bicycle
+  2: car
+  ...
+  
+📌 Role of YAML
 
----
+Defines dataset structure
+Maps class IDs to names
+Links dataset to YOLO model in Ultralytics YOLO
 
-# 🙏 Acknowledgement
+🏷️ Label Format
 
-Thanks to the internship mentors for structured guidance and hands-on learning experience throughout the program.
+<class_id> <x_center> <y_center> <width> <height>
+
+Example:
+
+58 0.519219 0.451121 0.39825 0.75729
+75 0.501188 0.592138 0.26 0.456192
+
+📌 Interpretation
+
+Each line = one object
+Coordinates are normalized (0–1)
+Multiple objects per image supported
+
+Example:
+
+58 → potted plant
+75 → vase
+
+📊 Key Learnings
+
+YOLO datasets require strict structure
+YAML connects dataset and model logic
+Labels store object-level spatial data
+COCO8 is used for testing/debugging pipelines
+Proper dataset formatting is essential for AI training
+
+📚 References
+
+https://docs.ultralytics.com
+https://docs.ultralytics.com/datasets/detect/coco8/
+https://github.com/ultralytics/ultralytics
+
+🧠 Final Outcome
+
+This internship project successfully demonstrates:
+
+End-to-end video AI pipeline
+Object detection and segmentation workflow
+Dataset configuration understanding
+Real-world application of YOLO models
+Media processing using FFmpeg
+
+⭐ Repository Status
+
+✔ Completed Weeks 1–4 Tasks
+✔ Video Processing Pipeline
+✔ YOLO Object Detection & Segmentation
+✔ Dataset Analysis (COCO8)
+✔ Documentation & Reporting
