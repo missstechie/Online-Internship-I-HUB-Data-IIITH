@@ -1,0 +1,9 @@
+path: /mnt/c/Users/nashe/Documents/Internship/dataset
+
+train: train/images
+val: val/images
+
+names:
+  0: person
+  1: car
+  2: bike
