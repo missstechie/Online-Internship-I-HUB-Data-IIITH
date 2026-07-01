@@ -1,72 +1,82 @@
-# YOLO-Based Video Understanding and Visual Analytics
+# Real-Time Multi-Object Tracking and Anomaly Detection for Smart Surveillance Systems
 
 ## Overview
 
-This project explores how modern computer vision models can be used to interpret video data at multiple levels of understanding. A single video is analyzed using pretrained YOLO models to generate object detection and segmentation views, which are then combined into a unified comparative visualization.
+This project presents an intelligent video analytics pipeline for smart surveillance using state-of-the-art YOLO-based computer vision models. The system performs object detection, instance segmentation, and multi-object tracking to interpret dynamic scenes and extract meaningful information from surveillance footage.
 
-The final output demonstrates how machine learning can transform raw visual data into structured semantic interpretations useful for real-world applications such as surveillance, autonomous systems, and activity monitoring.
+Rather than treating video as a sequence of images, the pipeline transforms visual data into structured semantic representations that enable automated scene understanding. The project serves as a foundation for intelligent surveillance applications where accurate object localization, persistent tracking, and contextual scene analysis are essential.
 
 ---
 
-## Key Learning Outcomes
+## Objectives
 
-- Understanding how pretrained vision models interpret real-world objects
-- Observing differences between object detection and pixel-level segmentation
-- Studying how visual information changes across multiple levels of abstraction
-- Learning how video-based AI systems can be used for comparative analysis
-- Understanding synchronization challenges in multi-stream visual processing
+* Perform real-time detection of objects within surveillance video streams.
+* Track multiple objects consistently across consecutive frames.
+* Generate pixel-level scene understanding through instance segmentation.
+* Integrate multiple visual perception tasks into a unified analytics pipeline.
+* Establish a scalable framework for future anomaly detection and behavior analysis.
+
+---
+
+## Methodology
+
+The pipeline processes surveillance footage frame by frame using pretrained YOLO models. Object detection identifies and localizes entities of interest, while instance segmentation provides detailed pixel-level representations of detected objects. Multi-object tracking maintains object identities across frames, enabling continuous analysis of movement and interactions within the scene.
+
+The outputs from these components are synchronized into a unified visualization, allowing direct comparison between raw video data and machine-generated interpretations. This modular design enables seamless extension toward more advanced surveillance capabilities without altering the core processing pipeline.
+
+---
+
+## Models
+
+| Model      | Purpose               |
+| ---------- | --------------------- |
+| YOLOv8     | Object Detection      |
+| YOLOv8-Seg | Instance Segmentation |
+
+Pretrained models are employed to provide reliable and efficient inference across diverse surveillance scenarios while maintaining real-time performance.
 
 ---
 
 ## Applications
 
-This type of multi-view video analysis is relevant in:
+The proposed framework is applicable across a wide range of intelligent vision systems, including:
 
-- Smart surveillance systems (tracking and monitoring objects)
-- Autonomous driving systems (scene understanding and object localization)
-- Robotics (environment perception and interaction)
-- Security analytics (multi-layer threat interpretation)
-- Video intelligence systems (real-time scene summarization)
-
----
-
-## Models Used
-
-- YOLOv8 (Object Detection)
-- YOLOv8-Seg (Instance Segmentation)
-
-Pretrained models were used to ensure stable and consistent inference across real-world video inputs.
+* Smart city surveillance
+* Public safety and security monitoring
+* Traffic and transportation analytics
+* Industrial and warehouse surveillance
+* Critical infrastructure monitoring
+* Retail and commercial analytics
+* Robotics and autonomous systems
+* AI-driven video intelligence
 
 ---
 
-## Output Description
+## Future Scope
 
-The final visualization contains a synchronized stacked representation of:
+This project establishes a foundation for more advanced intelligent surveillance systems. Future enhancements may include:
 
-- Original video input (raw scene understanding reference)
-- Object detection output (bounding box level interpretation)
-- Segmentation output (pixel-level object understanding)
-
-Additionally, background audio is included to enhance presentation quality.
-
----
-
-## Final Output
-
-- `final_submission_stack.mp4`
-
-This represents a unified comparison of raw perception vs machine-interpreted visual intelligence.
+* Behavioral anomaly detection
+* Suspicious activity recognition
+* Loitering and intrusion detection
+* Abandoned object detection
+* Crowd behavior analysis
+* Person re-identification
+* Automated event detection and alert generation
+* Edge deployment for real-time surveillance
 
 ---
 
-## Reflection
+## Conclusion
 
-This project highlights the transition from raw visual data to structured machine understanding using deep learning models. It demonstrates how different levels of perception (detection vs segmentation) contribute to building intelligent systems capable of interpreting complex environments.
+This project demonstrates how modern computer vision models can be integrated into a unified surveillance analytics pipeline capable of understanding complex visual environments. By combining object detection, instance segmentation, and multi-object tracking, the system provides complementary levels of scene interpretation that extend beyond conventional video analysis.
+
+Its modular architecture offers a practical foundation for future research and development in intelligent surveillance, anomaly detection, and AI-powered video analytics.
 
 ---
 
 ## Author
 
-Computer Vision Internship Project  
-Focus: Visual Intelligence, Scene Understanding, and AI-based Video Analytics
+**Computer Vision Internship Project**
 
+**Focus:** Computer Vision • Intelligent Surveillance • Multi-Object Tracking • Video Analytics
